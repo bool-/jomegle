@@ -1,0 +1,23 @@
+<project name="jomegle" basedir="." default="build">
+
+    <property name="src.dir" value="src"/>
+    <property name="bin.dir" value="bin"/>
+
+    <target name="clean">
+        <delete includeemptydirs="true">
+            <fileset dir="${bin.dir}" includes="**/*" defaultexcludes="no"/>
+        </delete>
+    </target>
+
+    <target name="compile">
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" />
+    </target>
+    <target name="jar" depends="compile">
+        <jar destfile="jomegle.jar" basedir="${bin.dir}" excludes="**/net/ifixshit/omegle/impl/">
+        </jar>
+    </target>
+
+    <target name="package" depends="clean,jar"/>
+    <target name="build" depends="package"/>
+
+</project>
